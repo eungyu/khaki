@@ -1,0 +1,497 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		18F9021718598E080018CF21 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F9021618598E080018CF21 /* Cocoa.framework */; };
+		18F9022118598E080018CF21 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18F9021F18598E080018CF21 /* InfoPlist.strings */; };
+		18F9022318598E080018CF21 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F9022218598E080018CF21 /* main.m */; };
+		18F9022718598E080018CF21 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 18F9022518598E080018CF21 /* Credits.rtf */; };
+		18F9022A18598E080018CF21 /* KhakiAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F9022918598E080018CF21 /* KhakiAppDelegate.m */; };
+		18F9022D18598E080018CF21 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F9022B18598E080018CF21 /* MainMenu.xib */; };
+		18F9023018598E080018CF21 /* Khaki.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18F9022E18598E080018CF21 /* Khaki.xcdatamodeld */; };
+		18F9023218598E080018CF21 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18F9023118598E080018CF21 /* Images.xcassets */; };
+		18F9023918598E080018CF21 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F9023818598E080018CF21 /* XCTest.framework */; };
+		18F9023A18598E080018CF21 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F9021618598E080018CF21 /* Cocoa.framework */; };
+		18F9024218598E080018CF21 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18F9024018598E080018CF21 /* InfoPlist.strings */; };
+		18F9024418598E080018CF21 /* KhakiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F9024318598E080018CF21 /* KhakiTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		18F9023B18598E080018CF21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18F9020B18598E080018CF21 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18F9021218598E080018CF21;
+			remoteInfo = Khaki;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		18F9021318598E080018CF21 /* Khaki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Khaki.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		18F9021618598E080018CF21 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		18F9021918598E080018CF21 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		18F9021A18598E080018CF21 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		18F9021B18598E080018CF21 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		18F9021E18598E080018CF21 /* Khaki-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Khaki-Info.plist"; sourceTree = "<group>"; };
+		18F9022018598E080018CF21 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		18F9022218598E080018CF21 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		18F9022418598E080018CF21 /* Khaki-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Khaki-Prefix.pch"; sourceTree = "<group>"; };
+		18F9022618598E080018CF21 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		18F9022818598E080018CF21 /* KhakiAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KhakiAppDelegate.h; sourceTree = "<group>"; };
+		18F9022918598E080018CF21 /* KhakiAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KhakiAppDelegate.m; sourceTree = "<group>"; };
+		18F9022C18598E080018CF21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		18F9022F18598E080018CF21 /* Khaki.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Khaki.xcdatamodel; sourceTree = "<group>"; };
+		18F9023118598E080018CF21 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		18F9023718598E080018CF21 /* KhakiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KhakiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		18F9023818598E080018CF21 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		18F9023F18598E080018CF21 /* KhakiTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KhakiTests-Info.plist"; sourceTree = "<group>"; };
+		18F9024118598E080018CF21 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		18F9024318598E080018CF21 /* KhakiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KhakiTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		18F9021018598E080018CF21 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18F9021718598E080018CF21 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18F9023418598E080018CF21 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18F9023A18598E080018CF21 /* Cocoa.framework in Frameworks */,
+				18F9023918598E080018CF21 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		18F9020A18598E080018CF21 = {
+			isa = PBXGroup;
+			children = (
+				18F9021C18598E080018CF21 /* Khaki */,
+				18F9023D18598E080018CF21 /* KhakiTests */,
+				18F9021518598E080018CF21 /* Frameworks */,
+				18F9021418598E080018CF21 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		18F9021418598E080018CF21 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				18F9021318598E080018CF21 /* Khaki.app */,
+				18F9023718598E080018CF21 /* KhakiTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		18F9021518598E080018CF21 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				18F9021618598E080018CF21 /* Cocoa.framework */,
+				18F9023818598E080018CF21 /* XCTest.framework */,
+				18F9021818598E080018CF21 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		18F9021818598E080018CF21 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				18F9021918598E080018CF21 /* AppKit.framework */,
+				18F9021A18598E080018CF21 /* CoreData.framework */,
+				18F9021B18598E080018CF21 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		18F9021C18598E080018CF21 /* Khaki */ = {
+			isa = PBXGroup;
+			children = (
+				18F9022818598E080018CF21 /* KhakiAppDelegate.h */,
+				18F9022918598E080018CF21 /* KhakiAppDelegate.m */,
+				18F9022B18598E080018CF21 /* MainMenu.xib */,
+				18F9023118598E080018CF21 /* Images.xcassets */,
+				18F9022E18598E080018CF21 /* Khaki.xcdatamodeld */,
+				18F9021D18598E080018CF21 /* Supporting Files */,
+			);
+			path = Khaki;
+			sourceTree = "<group>";
+		};
+		18F9021D18598E080018CF21 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				18F9021E18598E080018CF21 /* Khaki-Info.plist */,
+				18F9021F18598E080018CF21 /* InfoPlist.strings */,
+				18F9022218598E080018CF21 /* main.m */,
+				18F9022418598E080018CF21 /* Khaki-Prefix.pch */,
+				18F9022518598E080018CF21 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		18F9023D18598E080018CF21 /* KhakiTests */ = {
+			isa = PBXGroup;
+			children = (
+				18F9024318598E080018CF21 /* KhakiTests.m */,
+				18F9023E18598E080018CF21 /* Supporting Files */,
+			);
+			path = KhakiTests;
+			sourceTree = "<group>";
+		};
+		18F9023E18598E080018CF21 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				18F9023F18598E080018CF21 /* KhakiTests-Info.plist */,
+				18F9024018598E080018CF21 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		18F9021218598E080018CF21 /* Khaki */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18F9024718598E080018CF21 /* Build configuration list for PBXNativeTarget "Khaki" */;
+			buildPhases = (
+				18F9020F18598E080018CF21 /* Sources */,
+				18F9021018598E080018CF21 /* Frameworks */,
+				18F9021118598E080018CF21 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Khaki;
+			productName = Khaki;
+			productReference = 18F9021318598E080018CF21 /* Khaki.app */;
+			productType = "com.apple.product-type.application";
+		};
+		18F9023618598E080018CF21 /* KhakiTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18F9024A18598E080018CF21 /* Build configuration list for PBXNativeTarget "KhakiTests" */;
+			buildPhases = (
+				18F9023318598E080018CF21 /* Sources */,
+				18F9023418598E080018CF21 /* Frameworks */,
+				18F9023518598E080018CF21 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18F9023C18598E080018CF21 /* PBXTargetDependency */,
+			);
+			name = KhakiTests;
+			productName = KhakiTests;
+			productReference = 18F9023718598E080018CF21 /* KhakiTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		18F9020B18598E080018CF21 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = Khaki;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Eun-Gyu Kim";
+				TargetAttributes = {
+					18F9023618598E080018CF21 = {
+						TestTargetID = 18F9021218598E080018CF21;
+					};
+				};
+			};
+			buildConfigurationList = 18F9020E18598E080018CF21 /* Build configuration list for PBXProject "Khaki" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 18F9020A18598E080018CF21;
+			productRefGroup = 18F9021418598E080018CF21 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				18F9021218598E080018CF21 /* Khaki */,
+				18F9023618598E080018CF21 /* KhakiTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		18F9021118598E080018CF21 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18F9022118598E080018CF21 /* InfoPlist.strings in Resources */,
+				18F9023218598E080018CF21 /* Images.xcassets in Resources */,
+				18F9022718598E080018CF21 /* Credits.rtf in Resources */,
+				18F9022D18598E080018CF21 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18F9023518598E080018CF21 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18F9024218598E080018CF21 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		18F9020F18598E080018CF21 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18F9022318598E080018CF21 /* main.m in Sources */,
+				18F9023018598E080018CF21 /* Khaki.xcdatamodeld in Sources */,
+				18F9022A18598E080018CF21 /* KhakiAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18F9023318598E080018CF21 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18F9024418598E080018CF21 /* KhakiTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		18F9023C18598E080018CF21 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18F9021218598E080018CF21 /* Khaki */;
+			targetProxy = 18F9023B18598E080018CF21 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		18F9021F18598E080018CF21 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18F9022018598E080018CF21 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		18F9022518598E080018CF21 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18F9022618598E080018CF21 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		18F9022B18598E080018CF21 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18F9022C18598E080018CF21 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		18F9024018598E080018CF21 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18F9024118598E080018CF21 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		18F9024518598E080018CF21 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		18F9024618598E080018CF21 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		18F9024818598E080018CF21 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Khaki/Khaki-Prefix.pch";
+				INFOPLIST_FILE = "Khaki/Khaki-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		18F9024918598E080018CF21 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Khaki/Khaki-Prefix.pch";
+				INFOPLIST_FILE = "Khaki/Khaki-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		18F9024B18598E080018CF21 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Khaki.app/Contents/MacOS/Khaki";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Khaki/Khaki-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "KhakiTests/KhakiTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		18F9024C18598E080018CF21 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Khaki.app/Contents/MacOS/Khaki";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Khaki/Khaki-Prefix.pch";
+				INFOPLIST_FILE = "KhakiTests/KhakiTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		18F9020E18598E080018CF21 /* Build configuration list for PBXProject "Khaki" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18F9024518598E080018CF21 /* Debug */,
+				18F9024618598E080018CF21 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18F9024718598E080018CF21 /* Build configuration list for PBXNativeTarget "Khaki" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18F9024818598E080018CF21 /* Debug */,
+				18F9024918598E080018CF21 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		18F9024A18598E080018CF21 /* Build configuration list for PBXNativeTarget "KhakiTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18F9024B18598E080018CF21 /* Debug */,
+				18F9024C18598E080018CF21 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		18F9022E18598E080018CF21 /* Khaki.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				18F9022F18598E080018CF21 /* Khaki.xcdatamodel */,
+			);
+			currentVersion = 18F9022F18598E080018CF21 /* Khaki.xcdatamodel */;
+			path = Khaki.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 18F9020B18598E080018CF21 /* Project object */;
+}
