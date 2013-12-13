@@ -10,14 +10,15 @@
 
 @interface KhakiSocket : NSObject<NSStreamDelegate>
 
+@property bool connected;
+
 @property (nonatomic, retain) NSInputStream *inputStream;
 @property (nonatomic, retain) NSOutputStream *outputStream;
 
-@property (nonatomic, retain) dispatch_semaphore_t writability;
-@property (nonatomic, retain) dispatch_semaphore_t readability;
+@property (nonatomic, readonly) dispatch_semaphore_t writability;
+@property (nonatomic, readonly) dispatch_semaphore_t readability;
 
-@property bool connected;
-
+- (void)connectToHost:(NSString *) host onPort:(NSInteger) port;
 - (void)stream:(NSStream *)stream handleEvent:(NSStreamEvent)event;
 
 @end

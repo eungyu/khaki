@@ -26,6 +26,7 @@
 		6AD33F2E185BA5C80008568E /* StreamBufferOut.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD33F29185BA5C80008568E /* StreamBufferOut.m */; };
 		6AD33F32185BA6180008568E /* Khaki.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD33F31185BA6180008568E /* Khaki.m */; };
 		6AD33F35185BABC30008568E /* KhakiSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD33F34185BABC30008568E /* KhakiSocket.m */; };
+		6AD4504B185BC21700DE675F /* KhakiWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD4504A185BC21700DE675F /* KhakiWindowController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,8 @@
 		6AD33F31185BA6180008568E /* Khaki.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Khaki.m; sourceTree = "<group>"; };
 		6AD33F33185BABC30008568E /* KhakiSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KhakiSocket.h; sourceTree = "<group>"; };
 		6AD33F34185BABC30008568E /* KhakiSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KhakiSocket.m; sourceTree = "<group>"; };
+		6AD45049185BC21700DE675F /* KhakiWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KhakiWindowController.h; sourceTree = "<group>"; };
+		6AD4504A185BC21700DE675F /* KhakiWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KhakiWindowController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +153,8 @@
 				18F9021D18598E080018CF21 /* Supporting Files */,
 				6AD33F30185BA6180008568E /* Khaki.h */,
 				6AD33F31185BA6180008568E /* Khaki.m */,
+				6AD45049185BC21700DE675F /* KhakiWindowController.h */,
+				6AD4504A185BC21700DE675F /* KhakiWindowController.m */,
 			);
 			path = Khaki;
 			sourceTree = "<group>";
@@ -313,6 +318,7 @@
 			files = (
 				6AD33F32185BA6180008568E /* Khaki.m in Sources */,
 				6AD33F35185BABC30008568E /* KhakiSocket.m in Sources */,
+				6AD4504B185BC21700DE675F /* KhakiWindowController.m in Sources */,
 				6AD33F2B185BA5C80008568E /* GetMsg.m in Sources */,
 				18F9022318598E080018CF21 /* main.m in Sources */,
 				6AD33F2E185BA5C80008568E /* StreamBufferOut.m in Sources */,

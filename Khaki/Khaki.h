@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Khaki : NSObject<NSStreamDelegate>
+@interface Khaki : NSObject
 
-@property NSString *host;
-@property NSInteger port;
+@property (nonatomic, readonly, copy) NSString *host;
+@property (nonatomic, readonly)       NSInteger port;
 
 - (id) initWithZkConnectString:(NSString *) zkAddr;
+- (void) connect;
 
 @end

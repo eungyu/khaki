@@ -8,6 +8,11 @@
 
 #import "KhakiSocket.h"
 
+@interface KhakiSocket()
+  @property (nonatomic, readwrite) dispatch_semaphore_t writability;
+  @property (nonatomic, readwrite) dispatch_semaphore_t readability;
+@end
+
 @implementation KhakiSocket {
   CFReadStreamRef  _readStream;
   CFWriteStreamRef _writeStream;
@@ -50,10 +55,12 @@
   switch (event) {
     case NSStreamEventHasSpaceAvailable: {
       dispatch_semaphore_signal(self.writability);
+      NSLog(@"Marking writable");
       break;
     }
     case NSStreamEventHasBytesAvailable: {
       dispatch_semaphore_signal(self.readability);
+      NSLog(@"Marking readable");
       break;
     }
     case NSStreamEventEndEncountered:
