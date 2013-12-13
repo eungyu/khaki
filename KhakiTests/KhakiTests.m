@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Eun-Gyu Kim. All rights reserved.
 //
 
+#import "Khaki.h"
 #import <XCTest/XCTest.h>
 
 @interface KhakiTests : XCTestCase
@@ -28,7 +29,16 @@
 
 - (void)testExample
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+  Khaki *khaki = [[Khaki alloc] initWithZkConnectString:@"eungyu.me"];
+
+  NSInteger defaultPort = 2181;
+  NSInteger customPort = 12345;
+  XCTAssertEqualObjects([khaki host], @"eungyu.me");
+  XCTAssertEqual([khaki port], defaultPort);
+  
+  Khaki *khakiCustomPort = [[Khaki alloc] initWithZkConnectString:@"eungyu.me:12345"];
+  XCTAssertEqualObjects([khakiCustomPort host], @"eungyu.me");
+  XCTAssertEqual([khakiCustomPort port], customPort);
 }
 
 @end

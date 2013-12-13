@@ -19,6 +19,13 @@
 		18F9023A18598E080018CF21 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F9021618598E080018CF21 /* Cocoa.framework */; };
 		18F9024218598E080018CF21 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18F9024018598E080018CF21 /* InfoPlist.strings */; };
 		18F9024418598E080018CF21 /* KhakiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F9024318598E080018CF21 /* KhakiTests.m */; };
+		6AD33F2A185BA5C80008568E /* ConnMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD33F1F185BA5C80008568E /* ConnMsg.m */; };
+		6AD33F2B185BA5C80008568E /* GetMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD33F21185BA5C80008568E /* GetMsg.m */; };
+		6AD33F2C185BA5C80008568E /* ReplyHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD33F25185BA5C80008568E /* ReplyHeader.m */; };
+		6AD33F2D185BA5C80008568E /* StreamBufferIn.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD33F27185BA5C80008568E /* StreamBufferIn.m */; };
+		6AD33F2E185BA5C80008568E /* StreamBufferOut.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD33F29185BA5C80008568E /* StreamBufferOut.m */; };
+		6AD33F32185BA6180008568E /* Khaki.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD33F31185BA6180008568E /* Khaki.m */; };
+		6AD33F35185BABC30008568E /* KhakiSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD33F34185BABC30008568E /* KhakiSocket.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +59,22 @@
 		18F9023F18598E080018CF21 /* KhakiTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KhakiTests-Info.plist"; sourceTree = "<group>"; };
 		18F9024118598E080018CF21 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		18F9024318598E080018CF21 /* KhakiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KhakiTests.m; sourceTree = "<group>"; };
+		6AD33F1E185BA5C80008568E /* ConnMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnMsg.h; sourceTree = "<group>"; };
+		6AD33F1F185BA5C80008568E /* ConnMsg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnMsg.m; sourceTree = "<group>"; };
+		6AD33F20185BA5C80008568E /* GetMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetMsg.h; sourceTree = "<group>"; };
+		6AD33F21185BA5C80008568E /* GetMsg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetMsg.m; sourceTree = "<group>"; };
+		6AD33F22185BA5C80008568E /* OpCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpCode.h; sourceTree = "<group>"; };
+		6AD33F23185BA5C80008568E /* Ping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ping.h; sourceTree = "<group>"; };
+		6AD33F24185BA5C80008568E /* ReplyHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyHeader.h; sourceTree = "<group>"; };
+		6AD33F25185BA5C80008568E /* ReplyHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyHeader.m; sourceTree = "<group>"; };
+		6AD33F26185BA5C80008568E /* StreamBufferIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamBufferIn.h; sourceTree = "<group>"; };
+		6AD33F27185BA5C80008568E /* StreamBufferIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamBufferIn.m; sourceTree = "<group>"; };
+		6AD33F28185BA5C80008568E /* StreamBufferOut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamBufferOut.h; sourceTree = "<group>"; };
+		6AD33F29185BA5C80008568E /* StreamBufferOut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamBufferOut.m; sourceTree = "<group>"; };
+		6AD33F30185BA6180008568E /* Khaki.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Khaki.h; sourceTree = "<group>"; };
+		6AD33F31185BA6180008568E /* Khaki.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Khaki.m; sourceTree = "<group>"; };
+		6AD33F33185BABC30008568E /* KhakiSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KhakiSocket.h; sourceTree = "<group>"; };
+		6AD33F34185BABC30008568E /* KhakiSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KhakiSocket.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,12 +140,16 @@
 		18F9021C18598E080018CF21 /* Khaki */ = {
 			isa = PBXGroup;
 			children = (
+				6AD33F2F185BA5D20008568E /* io */,
+				6AD33F1D185BA5A80008568E /* protocol */,
 				18F9022818598E080018CF21 /* KhakiAppDelegate.h */,
 				18F9022918598E080018CF21 /* KhakiAppDelegate.m */,
 				18F9022B18598E080018CF21 /* MainMenu.xib */,
 				18F9023118598E080018CF21 /* Images.xcassets */,
 				18F9022E18598E080018CF21 /* Khaki.xcdatamodeld */,
 				18F9021D18598E080018CF21 /* Supporting Files */,
+				6AD33F30185BA6180008568E /* Khaki.h */,
+				6AD33F31185BA6180008568E /* Khaki.m */,
 			);
 			path = Khaki;
 			sourceTree = "<group>";
@@ -155,6 +182,34 @@
 				18F9024018598E080018CF21 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6AD33F1D185BA5A80008568E /* protocol */ = {
+			isa = PBXGroup;
+			children = (
+				6AD33F1E185BA5C80008568E /* ConnMsg.h */,
+				6AD33F1F185BA5C80008568E /* ConnMsg.m */,
+				6AD33F20185BA5C80008568E /* GetMsg.h */,
+				6AD33F21185BA5C80008568E /* GetMsg.m */,
+				6AD33F22185BA5C80008568E /* OpCode.h */,
+				6AD33F23185BA5C80008568E /* Ping.h */,
+				6AD33F24185BA5C80008568E /* ReplyHeader.h */,
+				6AD33F25185BA5C80008568E /* ReplyHeader.m */,
+			);
+			name = protocol;
+			sourceTree = "<group>";
+		};
+		6AD33F2F185BA5D20008568E /* io */ = {
+			isa = PBXGroup;
+			children = (
+				6AD33F26185BA5C80008568E /* StreamBufferIn.h */,
+				6AD33F27185BA5C80008568E /* StreamBufferIn.m */,
+				6AD33F28185BA5C80008568E /* StreamBufferOut.h */,
+				6AD33F29185BA5C80008568E /* StreamBufferOut.m */,
+				6AD33F33185BABC30008568E /* KhakiSocket.h */,
+				6AD33F34185BABC30008568E /* KhakiSocket.m */,
+			);
+			name = io;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,7 +311,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AD33F32185BA6180008568E /* Khaki.m in Sources */,
+				6AD33F35185BABC30008568E /* KhakiSocket.m in Sources */,
+				6AD33F2B185BA5C80008568E /* GetMsg.m in Sources */,
 				18F9022318598E080018CF21 /* main.m in Sources */,
+				6AD33F2E185BA5C80008568E /* StreamBufferOut.m in Sources */,
+				6AD33F2A185BA5C80008568E /* ConnMsg.m in Sources */,
+				6AD33F2C185BA5C80008568E /* ReplyHeader.m in Sources */,
+				6AD33F2D185BA5C80008568E /* StreamBufferIn.m in Sources */,
 				18F9023018598E080018CF21 /* Khaki.xcdatamodeld in Sources */,
 				18F9022A18598E080018CF21 /* KhakiAppDelegate.m in Sources */,
 			);
@@ -392,6 +454,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Khaki/Khaki-Prefix.pch";
 				INFOPLIST_FILE = "Khaki/Khaki-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -405,6 +468,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Khaki/Khaki-Prefix.pch";
 				INFOPLIST_FILE = "Khaki/Khaki-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -469,6 +533,7 @@
 				18F9024918598E080018CF21 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18F9024A18598E080018CF21 /* Build configuration list for PBXNativeTarget "KhakiTests" */ = {
 			isa = XCConfigurationList;
@@ -477,6 +542,7 @@
 				18F9024C18598E080018CF21 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
