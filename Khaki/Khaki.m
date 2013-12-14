@@ -16,7 +16,7 @@
 #import "PendingMessageQueue.h"
 
 @implementation Khaki {
-  NSNumber _xid;
+  NSNumber *_xid;
   
   KhakiSocket *_socket;
   NSMutableArray *_outbound;
