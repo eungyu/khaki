@@ -1,21 +1,18 @@
 //
-//  GetMsg.h
+//  KhakiMessage.h
 //  Khaki
 //
-//  Created by Eun-Gyu Kim on 12/11/13.
+//  Created by Eun-Gyu Kim on 12/14/13.
 //  Copyright (c) 2013 Eun-Gyu Kim. All rights reserved.
 //
 
-#import "ZooMessage.h"
 #import <Foundation/Foundation.h>
 
-@interface GetMsg : NSObject<ZooMessage>
+@protocol ZooMessage
 
-@property NSString *path;
-@property NSString *content;
+@required
 
 - (NSData *) serialize;
 - (void) deserialize:(NSData *) incoming;
 
 @end
-

@@ -42,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18DE8095185C4A5300D41595 /* ZooMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZooMessage.h; sourceTree = "<group>"; };
 		18F9021318598E080018CF21 /* Khaki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Khaki.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F9021618598E080018CF21 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		18F9021918598E080018CF21 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -207,6 +208,7 @@
 				6AD45050185BE94D00DE675F /* Ping.m */,
 				6AD33F24185BA5C80008568E /* ReplyHeader.h */,
 				6AD33F25185BA5C80008568E /* ReplyHeader.m */,
+				18DE8095185C4A5300D41595 /* ZooMessage.h */,
 			);
 			name = protocol;
 			sourceTree = "<group>";
