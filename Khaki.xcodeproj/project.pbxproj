@@ -28,6 +28,7 @@
 		6AD33F35185BABC30008568E /* KhakiSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD33F34185BABC30008568E /* KhakiSocket.m */; };
 		6AD4504B185BC21700DE675F /* KhakiWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD4504A185BC21700DE675F /* KhakiWindowController.m */; };
 		6AD4504F185BD71800DE675F /* PendingMessageQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD4504E185BD71800DE675F /* PendingMessageQueue.m */; };
+		6AD45051185BE94D00DE675F /* Ping.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD45050185BE94D00DE675F /* Ping.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		6AD4504A185BC21700DE675F /* KhakiWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KhakiWindowController.m; sourceTree = "<group>"; };
 		6AD4504D185BD71800DE675F /* PendingMessageQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingMessageQueue.h; sourceTree = "<group>"; };
 		6AD4504E185BD71800DE675F /* PendingMessageQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingMessageQueue.m; sourceTree = "<group>"; };
+		6AD45050185BE94D00DE675F /* Ping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ping.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +204,7 @@
 				6AD33F21185BA5C80008568E /* GetMsg.m */,
 				6AD33F22185BA5C80008568E /* OpCode.h */,
 				6AD33F23185BA5C80008568E /* Ping.h */,
+				6AD45050185BE94D00DE675F /* Ping.m */,
 				6AD33F24185BA5C80008568E /* ReplyHeader.h */,
 				6AD33F25185BA5C80008568E /* ReplyHeader.m */,
 			);
@@ -329,6 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AD45051185BE94D00DE675F /* Ping.m in Sources */,
 				6AD33F32185BA6180008568E /* Khaki.m in Sources */,
 				6AD33F35185BABC30008568E /* KhakiSocket.m in Sources */,
 				6AD4504B185BC21700DE675F /* KhakiWindowController.m in Sources */,

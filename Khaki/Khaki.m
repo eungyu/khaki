@@ -9,9 +9,20 @@
 #import "Khaki.h"
 #import "KhakiSocket.h"
 
+#import "Ping.h"
+#import "ConnMsg.h"
+#import "ReplyHeader.h"
+#import "PendingMessageQueue.h"
+
 @implementation Khaki {
   KhakiSocket *_socket;
+  NSMutableArray *_outbound;
+  
   dispatch_queue_t _eventLoopQueue;
+  dispatch_semaphore_t _sendsema;
+  dispatch_source_t _pingTimer;
+
+  PendingMessageQueue *_pending;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -33,6 +44,9 @@
     }
     
     _socket = [[KhakiSocket alloc] init];
+    _outbound = [[NSMutableArray alloc] init];
+    _sendsema = dispatch_semaphore_create(0);
+    _pending = [[PendingMessageQueue alloc] init];
     _eventLoopQueue = dispatch_queue_create("event.queue", DISPATCH_QUEUE_CONCURRENT);
   }
   return self;
@@ -49,6 +63,8 @@
   dispatch_async(_eventLoopQueue, ^{
     [self recvloop];
   });
+  
+  [self sendConnMsg];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -57,17 +73,64 @@
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////
 
+// the holy send loop
 - (void) sendloop {
   while (true) {
+    // wait until there is outbound message available
+    dispatch_semaphore_wait(_sendsema, DISPATCH_TIME_FOREVER);
+
+    // wait until socket is writable
     dispatch_semaphore_wait(_socket.writability, DISPATCH_TIME_FOREVER);
-    NSLog(@"Send message");
+
+    NSData *data = nil;
+    @synchronized(_outbound) {
+      data = [_outbound objectAtIndex:0];
+      [_outbound removeObjectAtIndex:0];
+    }
+    
+    NSLog(@"Sending message");
+    NSInteger nbytes = [_socket writeBytes:[data bytes] withMaxLen:[data length]];
+    
+    NSLog(@"%ld byte sent", nbytes);
+    
+    // TODO: handle unfinished bytes
   }
 }
 
+// the holy receive loop
 - (void) recvloop {
   while (true) {
     dispatch_semaphore_wait(_socket.readability, DISPATCH_TIME_FOREVER);
-    NSLog(@"Recv message");
+    
+    uint8_t buf[1024];
+    NSInteger len = [_socket readBytesToBuffer:buf withMaxLen:1024];
+
+    if (len > 0) {
+      uint32_t msglen = OSReadBigInt32(buf, 0);
+      NSLog(@"Read message of %d bytes", msglen);
+      
+      NSMutableData *data = [[NSMutableData alloc] initWithLength:0];
+      [data appendBytes: (const void *) &buf[sizeof(uint32_t)] length:msglen];
+      
+      if (!_socket.connected) {
+        ConnMsg *conn = [[ConnMsg alloc] init];
+        [conn deserialize:data];
+        [_socket setConnected:true];
+        [self setupPingTimer];
+      }
+      else
+      {
+        ReplyHeader *header = [[ReplyHeader alloc] init];
+        [header deserialize:data];
+
+        int headerLength = [ReplyHeader getHeaderLength];
+        NSRange payloadRange = NSMakeRange(headerLength, msglen - headerLength);
+        NSData *payload = [data subdataWithRange:payloadRange];
+        [self handlePayload:payload withHeader:header];
+      }
+      
+    }
+    
   }
 }
 
@@ -77,5 +140,60 @@
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////
 
+- (void) sendMessage:(NSData *) data {
+
+  @synchronized(_outbound) {
+    [_outbound addObject:data];
+  }
+
+  dispatch_semaphore_signal(_sendsema);
+}
+
+- (void) handlePayload:(NSData *) payload withHeader:(ReplyHeader *) header {
+  
+  int xid = [header xid];
+  switch (xid) {
+    case -2:
+      NSLog(@"Received PING");
+      return;
+    default:
+      break;
+  }
+  
+  // submit response to pending queue
+  [_pending submit:xid with:payload];
+}
+
+- (void) sendConnMsg {
+  ConnMsg *conn = [[ConnMsg alloc] init];
+  conn.timeout = 30000;
+  
+  NSData *msg = [conn serialize];
+  [self sendMessage:msg];
+}
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Periodic Timers
+#pragma mark -
+////////////////////////////////////////////////////////////////////////////////
+
+
+- (void) setupPingTimer {
+  _pingTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
+  
+  if (_pingTimer) {
+    dispatch_source_set_timer(_pingTimer, dispatch_time(DISPATCH_TIME_NOW, 0), 5ull * NSEC_PER_SEC, 1ull * NSEC_PER_SEC);
+    dispatch_source_set_event_handler(_pingTimer, ^{
+      NSLog(@"Sending PING");
+      Ping *ping = [[Ping alloc] init];
+      NSData *data = [ping serialize];
+ 
+      [self sendMessage:data];
+    });
+    dispatch_resume(_pingTimer);
+  }
+  
+}
 
 @end

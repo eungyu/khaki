@@ -10,7 +10,7 @@
 
 @interface KhakiSocket : NSObject<NSStreamDelegate>
 
-@property bool connected;
+@property (readwrite) bool connected;
 
 @property (nonatomic, retain) NSInputStream *inputStream;
 @property (nonatomic, retain) NSOutputStream *outputStream;
@@ -20,5 +20,8 @@
 
 - (void)connectToHost:(NSString *) host onPort:(NSInteger) port;
 - (void)stream:(NSStream *)stream handleEvent:(NSStreamEvent)event;
+
+- (NSInteger) writeBytes:(const void *) bytes withMaxLen:(NSInteger) maxlen;
+- (NSInteger) readBytesToBuffer:(uint8_t *) buf withMaxLen:(NSInteger) maxlen;
 
 @end

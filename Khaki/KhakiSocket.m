@@ -50,6 +50,12 @@
   [self.outputStream open];
 }
 
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark NSStreamDelegate
+#pragma mark -
+////////////////////////////////////////////////////////////////////////////////
+
 - (void)stream:(NSStream *)stream handleEvent:(NSStreamEvent)event {
 
   switch (event) {
@@ -74,4 +80,17 @@
   }
 }
 
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Byte I/O
+#pragma mark -
+////////////////////////////////////////////////////////////////////////////////
+
+- (NSInteger) writeBytes:(const void *) bytes withMaxLen:(NSInteger) maxlen {
+  return [_outputStream write:bytes maxLength:maxlen];
+}
+
+- (NSInteger) readBytesToBuffer:(uint8_t *) buf withMaxLen:(NSInteger) maxlen {
+  return [_inputStream read:buf maxLength:maxlen];
+}
 @end
