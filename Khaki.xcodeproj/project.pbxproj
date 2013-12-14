@@ -151,16 +151,16 @@
 				6AD4504C185BD6F100DE675F /* models */,
 				6AD33F2F185BA5D20008568E /* io */,
 				6AD33F1D185BA5A80008568E /* protocol */,
-				18F9022818598E080018CF21 /* KhakiAppDelegate.h */,
-				18F9022918598E080018CF21 /* KhakiAppDelegate.m */,
 				18F9022B18598E080018CF21 /* MainMenu.xib */,
-				18F9023118598E080018CF21 /* Images.xcassets */,
-				18F9022E18598E080018CF21 /* Khaki.xcdatamodeld */,
-				18F9021D18598E080018CF21 /* Supporting Files */,
 				6AD33F30185BA6180008568E /* Khaki.h */,
 				6AD33F31185BA6180008568E /* Khaki.m */,
+				18F9022818598E080018CF21 /* KhakiAppDelegate.h */,
+				18F9022918598E080018CF21 /* KhakiAppDelegate.m */,
 				6AD45049185BC21700DE675F /* KhakiWindowController.h */,
 				6AD4504A185BC21700DE675F /* KhakiWindowController.m */,
+				18F9022E18598E080018CF21 /* Khaki.xcdatamodeld */,
+				18F9023118598E080018CF21 /* Images.xcassets */,
+				18F9021D18598E080018CF21 /* Supporting Files */,
 			);
 			path = Khaki;
 			sourceTree = "<group>";

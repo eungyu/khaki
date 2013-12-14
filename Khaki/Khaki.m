@@ -22,9 +22,11 @@
   NSMutableArray *_outbound;
   
   dispatch_queue_t _eventLoopQueue;
-  dispatch_semaphore_t _sendsema;
   dispatch_source_t _pingTimer;
 
+  dispatch_semaphore_t _sendsema;
+  dispatch_semaphore_t _connsema;
+  
   PendingMessageQueue *_pending;
 }
 
@@ -49,8 +51,12 @@
     
     _socket = [[KhakiSocket alloc] init];
     _outbound = [[NSMutableArray alloc] init];
-    _sendsema = dispatch_semaphore_create(0);
+    
     _pending = [[PendingMessageQueue alloc] init];
+
+    _sendsema = dispatch_semaphore_create(0);
+    _connsema = dispatch_semaphore_create(0);
+    
     _eventLoopQueue = dispatch_queue_create("event.queue", DISPATCH_QUEUE_CONCURRENT);
   }
   return self;
@@ -59,7 +65,7 @@
 - (void) connect {
   _socket = [[KhakiSocket alloc] init];
   [_socket connectToHost:self.host onPort:self.port];
-  
+
   dispatch_async(_eventLoopQueue, ^{
     [self sendloop];
   });
@@ -67,8 +73,14 @@
   dispatch_async(_eventLoopQueue, ^{
     [self recvloop];
   });
-  
-  [self sendConnMsg];
+
+  dispatch_sync(_eventLoopQueue, ^{
+    NSLog(@"Connecting ...");
+    [self sendConnMsg];
+
+    dispatch_semaphore_wait(_connsema, DISPATCH_TIME_FOREVER);
+    NSLog(@"Connection established");
+  });
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -92,6 +104,7 @@
 // the holy send loop
 - (void) sendloop {
   while (true) {
+    
     // wait until there is outbound message available
     dispatch_semaphore_wait(_sendsema, DISPATCH_TIME_FOREVER);
 
@@ -133,6 +146,8 @@
         [conn deserialize:data];
         [_socket setConnected:true];
         [self setupPingTimer];
+
+        dispatch_semaphore_signal(_connsema);
       }
       else
       {

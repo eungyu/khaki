@@ -42,12 +42,19 @@
   
   [self.inputStream setDelegate:self];
   [self.outputStream setDelegate:self];
-  
-  [_inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-  [_outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-  
-  [self.inputStream open];
-  [self.outputStream open];
+
+  // network stream events are handled in background thread with high priority
+  // so that blocking calls from main threads do not interfere with packet ops
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+    NSRunLoop *loop = [NSRunLoop currentRunLoop];
+    [_inputStream scheduleInRunLoop:loop forMode:NSDefaultRunLoopMode];
+    [_outputStream scheduleInRunLoop:loop forMode:NSDefaultRunLoopMode];
+    
+    [loop run];
+    
+    [self.inputStream open];
+    [self.outputStream open];
+  });
 }
 
 ////////////////////////////////////////////////////////////////////////////////
