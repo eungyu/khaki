@@ -10,11 +10,14 @@
 #import "KhakiSocket.h"
 
 #import "Ping.h"
+#import "GetMsg.h"
 #import "ConnMsg.h"
 #import "ReplyHeader.h"
 #import "PendingMessageQueue.h"
 
 @implementation Khaki {
+  NSNumber _xid;
+  
   KhakiSocket *_socket;
   NSMutableArray *_outbound;
   
@@ -36,6 +39,7 @@
   if (self) {
     NSArray *parts = [zkAddr componentsSeparatedByString:@":"];
 
+    _xid  = [NSNumber numberWithInt:1];
     _port = 2181;
     _host = [parts objectAtIndex:0];
 
@@ -72,6 +76,18 @@
 #pragma mark Event Loops
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////
+
+// the holy command loop
+- (void) exec {
+  GetMsg *command = [[GetMsg alloc] init];
+  command.path = @"/Hello/World";
+  
+  // send
+
+  // wait for notification (async)
+  
+  // return
+}
 
 // the holy send loop
 - (void) sendloop {
@@ -139,6 +155,17 @@
 #pragma mark Helper Functions
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////
+
+- (NSInteger) getNextXid {
+
+  NSInteger xid = 0;
+  @synchronized(_xid) {
+    xid = [_xid intValue] + 1;
+    _xid = [NSNumber numberWithInteger:xid];
+  }
+
+  return xid;
+}
 
 - (void) sendMessage:(NSData *) data {
 
