@@ -29,7 +29,7 @@
   @synchronized(_lockbox) {
     [_lockbox setObject:lock forKey:key];
   }
-  
+
   [lock lockWhenCondition:PENDING_ARRIVED];
   
   NSData *data = nil;
@@ -54,13 +54,17 @@
     lock = [_lockbox objectForKey:key];
   }
 
+  if (lock == nil) {
+    NSLog(@"submit lock is null");
+  }
+  
   [lock lockWhenCondition:PENDING_WAITING];
   
   @synchronized(_databox) {
     [_databox setObject:data forKey:key];
   }
   
-  [lock lockWhenCondition:PENDING_ARRIVED];
+  [lock unlockWithCondition:PENDING_ARRIVED];
   return;
 }
 

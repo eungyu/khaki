@@ -24,18 +24,14 @@
 
 - (NSData *) serialize {
   StreamBufferOut *data = [[StreamBufferOut alloc] init];
-  
-  [data appendInt:2];  // xid,  hacking for now
-  [data appendInt:4];  // type, hacking for now
-  
+    
   [data appendBuffer:self.path];
   [data appendBool:false];
-  return [data getDataBuffer];
+  return [data buffer];
 }
 
 - (void) deserialize:(NSData *)incoming {
   StreamBufferIn *data = [[StreamBufferIn alloc] initWithNSData:incoming];
-  
   self.content = [data readBuffer];
   
   NSLog(@"Content = %@", self.content);

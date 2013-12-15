@@ -41,6 +41,7 @@
   _khaki = [[Khaki alloc] initWithZkConnectString:@"localhost:2181"];
   [_khaki connect];
   
+  [_khaki exec];
 }
 
 

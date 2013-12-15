@@ -14,6 +14,7 @@
 - (void) appendLong:(uint64_t) val;
 - (void) appendBool:(bool) val;
 - (void) appendBuffer:(NSString *)string;
-- (NSData *) getDataBuffer;
+
+- (NSData *) buffer;
 
 @end

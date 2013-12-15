@@ -16,8 +16,7 @@
   self = [super init];
   if (self)
   {
-    uint32_t len = 0x0;
-    _data = [NSMutableData dataWithBytes:&len length:sizeof(uint32_t)];
+    _data = [[NSMutableData alloc] init];
   }
   return self;
 }
@@ -44,11 +43,7 @@
   [_data appendBytes:buf length:buffer.length];
 }
 
-- (NSData *) getDataBuffer {
-  uint32_t len = CFSwapInt32HostToBig(((uint32_t) _data.length) - sizeof(uint32_t));
-  NSRange range = {0, sizeof(uint32_t)};
-  
-  [_data replaceBytesInRange:range withBytes:&len];
+- (NSData *) buffer {
   return _data;
 }
 

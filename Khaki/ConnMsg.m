@@ -38,8 +38,7 @@
   [data appendBuffer:self.passwd];
   [data appendBool:self.readonly];
   
-  NSData *outgoing = [data getDataBuffer];
-  return outgoing;
+  return [data buffer];
 }
 
 - (void) deserialize:(NSData *) incoming {

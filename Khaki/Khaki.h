@@ -15,5 +15,6 @@
 
 - (id) initWithZkConnectString:(NSString *) zkAddr;
 - (void) connect;
+- (void) exec;
 
 @end

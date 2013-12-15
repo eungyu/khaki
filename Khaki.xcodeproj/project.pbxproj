@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18DE8098185D3E9000D41595 /* RequestHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DE8097185D3E9000D41595 /* RequestHeader.m */; };
 		18F9021718598E080018CF21 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F9021618598E080018CF21 /* Cocoa.framework */; };
 		18F9022118598E080018CF21 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18F9021F18598E080018CF21 /* InfoPlist.strings */; };
 		18F9022318598E080018CF21 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F9022218598E080018CF21 /* main.m */; };
@@ -43,6 +44,8 @@
 
 /* Begin PBXFileReference section */
 		18DE8095185C4A5300D41595 /* ZooMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZooMessage.h; sourceTree = "<group>"; };
+		18DE8096185D3E9000D41595 /* RequestHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestHeader.h; sourceTree = "<group>"; };
+		18DE8097185D3E9000D41595 /* RequestHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestHeader.m; sourceTree = "<group>"; };
 		18F9021318598E080018CF21 /* Khaki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Khaki.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F9021618598E080018CF21 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		18F9021918598E080018CF21 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -199,6 +202,7 @@
 		6AD33F1D185BA5A80008568E /* protocol */ = {
 			isa = PBXGroup;
 			children = (
+				18DE8095185C4A5300D41595 /* ZooMessage.h */,
 				6AD33F1E185BA5C80008568E /* ConnMsg.h */,
 				6AD33F1F185BA5C80008568E /* ConnMsg.m */,
 				6AD33F20185BA5C80008568E /* GetMsg.h */,
@@ -208,7 +212,8 @@
 				6AD45050185BE94D00DE675F /* Ping.m */,
 				6AD33F24185BA5C80008568E /* ReplyHeader.h */,
 				6AD33F25185BA5C80008568E /* ReplyHeader.m */,
-				18DE8095185C4A5300D41595 /* ZooMessage.h */,
+				18DE8096185D3E9000D41595 /* RequestHeader.h */,
+				18DE8097185D3E9000D41595 /* RequestHeader.m */,
 			);
 			name = protocol;
 			sourceTree = "<group>";
@@ -344,6 +349,7 @@
 				6AD33F2E185BA5C80008568E /* StreamBufferOut.m in Sources */,
 				6AD33F2A185BA5C80008568E /* ConnMsg.m in Sources */,
 				6AD33F2C185BA5C80008568E /* ReplyHeader.m in Sources */,
+				18DE8098185D3E9000D41595 /* RequestHeader.m in Sources */,
 				6AD33F2D185BA5C80008568E /* StreamBufferIn.m in Sources */,
 				18F9023018598E080018CF21 /* Khaki.xcdatamodeld in Sources */,
 				18F9022A18598E080018CF21 /* KhakiAppDelegate.m in Sources */,

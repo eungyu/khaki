@@ -19,7 +19,7 @@
   [data appendInt:-2];       // xid,  hacking for now
   [data appendInt:OP_PING];  // PING type
   
-  return [data getDataBuffer];
+  return [data buffer];
 }
 
 - (void) deserialize:(NSData *) incoming {

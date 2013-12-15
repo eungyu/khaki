@@ -10,10 +10,13 @@
 #import "KhakiSocket.h"
 
 #import "Ping.h"
+#import "OpCode.h"
 #import "GetMsg.h"
 #import "ConnMsg.h"
 #import "ReplyHeader.h"
+#import "RequestHeader.h"
 #import "PendingMessageQueue.h"
+#import "StreamBufferIn.h"
 
 @implementation Khaki {
   NSNumber *_xid;
@@ -58,6 +61,14 @@
     _connsema = dispatch_semaphore_create(0);
     
     _eventLoopQueue = dispatch_queue_create("event.queue", DISPATCH_QUEUE_CONCURRENT);
+
+    dispatch_async(_eventLoopQueue, ^{
+      [self sendloop];
+    });
+    
+    dispatch_async(_eventLoopQueue, ^{
+      [self recvloop];
+    });
   }
   return self;
 }
@@ -66,21 +77,11 @@
   _socket = [[KhakiSocket alloc] init];
   [_socket connectToHost:self.host onPort:self.port];
 
-  dispatch_async(_eventLoopQueue, ^{
-    [self sendloop];
-  });
-  
-  dispatch_async(_eventLoopQueue, ^{
-    [self recvloop];
-  });
+  NSLog(@"Connecting ...");
+  [self sendConnMsg];
 
-  dispatch_sync(_eventLoopQueue, ^{
-    NSLog(@"Connecting ...");
-    [self sendConnMsg];
-
-    dispatch_semaphore_wait(_connsema, DISPATCH_TIME_FOREVER);
-    NSLog(@"Connection established");
-  });
+  dispatch_semaphore_wait(_connsema, DISPATCH_TIME_FOREVER);
+  NSLog(@"Connection established");
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -91,14 +92,25 @@
 
 // the holy command loop
 - (void) exec {
+  
+  RequestHeader *header = [[RequestHeader alloc] init];
+  header.xid = [self getNextXid];
+  header.type = OP_GETDATA;
+  
   GetMsg *command = [[GetMsg alloc] init];
   command.path = @"/Hello/World";
   
-  // send
+  NSMutableData *request = [[NSMutableData alloc] init];
+  [request appendData:[header serialize]];
+  [request appendData:[command serialize]];
 
-  // wait for notification (async)
+  [self sendMessage:request];
   
-  // return
+  NSData *data = [_pending waitForResponse:header.xid];
+  GetMsg *response = [[GetMsg alloc] init];
+  [response deserialize:data];
+  
+  NSLog(@"Response %@ %d", response.content, response.content.length);
 }
 
 // the holy send loop
@@ -116,10 +128,14 @@
       data = [_outbound objectAtIndex:0];
       [_outbound removeObjectAtIndex:0];
     }
+
+    uint32_t msglen = CFSwapInt32HostToBig((uint32_t) data.length);
+    NSMutableData *msg = [[NSMutableData alloc] initWithLength:[data length] + 4];
     
-    NSLog(@"Sending message");
-    NSInteger nbytes = [_socket writeBytes:[data bytes] withMaxLen:[data length]];
+    [msg replaceBytesInRange:NSMakeRange(0, sizeof(uint32_t)) withBytes:&msglen];
+    [msg replaceBytesInRange:NSMakeRange(sizeof(uint32_t), [data length]) withBytes:[data bytes]];
     
+    NSInteger nbytes = [_socket writeBytes:[msg bytes] withMaxLen:[msg length]];
     NSLog(@"%ld byte sent", nbytes);
     
     // TODO: handle unfinished bytes
@@ -136,7 +152,6 @@
 
     if (len > 0) {
       uint32_t msglen = OSReadBigInt32(buf, 0);
-      NSLog(@"Read message of %d bytes", msglen);
       
       NSMutableData *data = [[NSMutableData alloc] initWithLength:0];
       [data appendBytes: (const void *) &buf[sizeof(uint32_t)] length:msglen];
@@ -153,7 +168,7 @@
       {
         ReplyHeader *header = [[ReplyHeader alloc] init];
         [header deserialize:data];
-
+        
         int headerLength = [ReplyHeader getHeaderLength];
         NSRange payloadRange = NSMakeRange(headerLength, msglen - headerLength);
         NSData *payload = [data subdataWithRange:payloadRange];
@@ -202,6 +217,8 @@
       break;
   }
   
+  NSLog(@"Response to xid %d, len %ld", xid, payload.length);
+
   // submit response to pending queue
   [_pending submit:xid with:payload];
 }
@@ -228,6 +245,7 @@
     dispatch_source_set_timer(_pingTimer, dispatch_time(DISPATCH_TIME_NOW, 0), 5ull * NSEC_PER_SEC, 1ull * NSEC_PER_SEC);
     dispatch_source_set_event_handler(_pingTimer, ^{
       NSLog(@"Sending PING");
+      
       Ping *ping = [[Ping alloc] init];
       NSData *data = [ping serialize];
  
