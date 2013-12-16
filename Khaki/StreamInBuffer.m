@@ -11,6 +11,7 @@
 
 @implementation StreamInBuffer {
   NSData *_data;
+  int _pos;
 }
 
 - (id) initWithNSData:(NSData *) data {
@@ -26,7 +27,7 @@
 - (int) readInt {
   const void * bytes = [_data bytes];
   int val = OSReadBigInt32(bytes, _pos);
-  self.pos += sizeof(int);
+  _pos += sizeof(int);
   
   return val;
 }
@@ -34,7 +35,7 @@
 - (long) readLong {
   const void *bytes = [_data bytes];
   long val = OSReadBigInt64(bytes, _pos);
-  self.pos += sizeof(long);
+  _pos += sizeof(long);
   
   return val;
 }
@@ -43,7 +44,7 @@
   bool val;
   NSRange range = {_pos, 1};
   [_data getBytes:&val range:range];
-  self.pos += sizeof(bool);
+  _pos += sizeof(bool);
   
   return val;
 }
@@ -55,6 +56,8 @@
   NSRange range = {_pos, len};
   
   [_data getBytes:&buf range:range];
+  
+  _pos += len;
   return [NSString stringWithCString:buf encoding:NSASCIIStringEncoding];
 }
 

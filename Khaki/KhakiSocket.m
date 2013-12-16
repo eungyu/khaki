@@ -68,12 +68,10 @@
   switch (event) {
     case NSStreamEventHasSpaceAvailable: {
       dispatch_semaphore_signal(self.writability);
-      NSLog(@"Marking writable");
       break;
     }
     case NSStreamEventHasBytesAvailable: {
       dispatch_semaphore_signal(self.readability);
-      NSLog(@"Marking readable");
       break;
     }
     case NSStreamEventEndEncountered:

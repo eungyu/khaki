@@ -32,10 +32,13 @@
   Stat *stat = [[Stat alloc] init];
 
   self.content = [buf readBuffer];
-  [buf readRecord:stat];
+  NSLog(@"Content = %@, len=%ld", self.content, [self.content length]);
   
-  NSLog(@"Content = %@", self.content);
-  [self.stat print];
+  [buf readRecord:stat];
+  self.stat = stat;
+  
+  [stat printDetail];
+
 }
 
 @end

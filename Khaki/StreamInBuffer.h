@@ -12,8 +12,6 @@
 
 @interface StreamInBuffer : NSObject
 
-@property int pos;
-
 - (id) initWithNSData:(NSData *) data;
 - (int) readInt;
 - (long) readLong;

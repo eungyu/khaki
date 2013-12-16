@@ -24,6 +24,6 @@
 @property long pzxid;
 
 - (void) deserialize:(StreamInBuffer *) buf;
-- (void) print;
+- (void) printDetail;
 
 @end

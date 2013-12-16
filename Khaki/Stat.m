@@ -25,8 +25,7 @@
   self.pzxid = [buf readLong];
 }
 
-- (void) print {
-  NSLog(@"Printing Stat");
+- (void) printDetail {
   NSLog(@"czxid=%ld,\n \
           mzxid=%ld,\n \
           ctime=%ld,\n \
