@@ -6,12 +6,13 @@
 //  Copyright (c) 2013 Eun-Gyu Kim. All rights reserved.
 //
 
-#import "ZooMessage.h"
+#import "Serializable.h"
+#import "Deserializable.h"
 #import <Foundation/Foundation.h>
 
-@interface Ping : NSObject<ZooMessage>
+@interface Ping : NSObject<Serializable, Deserializable>
 
-- (NSData *) serialize;
-- (void) deserialize:(NSData *) incoming;
+- (void) serialize:(StreamOutBuffer *) buf;
+- (void) deserialize:(StreamInBuffer *) buf;
 
 @end

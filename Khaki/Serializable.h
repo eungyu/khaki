@@ -1,18 +1,16 @@
 //
-//  KhakiMessage.h
+//  Serializable.h
 //  Khaki
 //
 //  Created by Eun-Gyu Kim on 12/14/13.
 //  Copyright (c) 2013 Eun-Gyu Kim. All rights reserved.
 //
 
+#import "StreamOutBuffer.h"
 #import <Foundation/Foundation.h>
 
-@protocol ZooMessage
+@protocol Serializable <NSObject>
 
-@required
-
-- (NSData *) serialize;
-- (void) deserialize:(NSData *) incoming;
+- (void) serialize:(StreamOutBuffer *) buf;
 
 @end

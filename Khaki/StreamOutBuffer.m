@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Eun-Gyu Kim. All rights reserved.
 //
 
-#import "StreamBufferOut.h"
+#import "StreamOutBuffer.h"
 
-@implementation StreamBufferOut {
+@implementation StreamOutBuffer {
   NSMutableData *_data;
 }
 

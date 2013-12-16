@@ -6,10 +6,11 @@
 //  Copyright (c) 2013 Eun-Gyu Kim. All rights reserved.
 //
 
-#import "ZooMessage.h"
+#import "Serializable.h"
+#import "Deserializable.h"
 #import <Foundation/Foundation.h>
 
-@interface ConnMsg : NSObject<ZooMessage>
+@interface ConnMsg : NSObject<Serializable, Deserializable>
 
 @property uint32_t protocol;
 @property uint64_t lastXid;
@@ -19,7 +20,7 @@
 @property NSString *passwd;
 @property bool readonly;
 
-- (NSData *) serialize;
-- (void) deserialize:(NSData *) data;
+- (void) serialize:(StreamOutBuffer *) buf;
+- (void) deserialize:(StreamInBuffer *) buf;
 
 @end

@@ -6,12 +6,13 @@
 //  Copyright (c) 2013 Eun-Gyu Kim. All rights reserved.
 //
 
+#import "Stat.h"
 #import "GetMsg.h"
-#import "StreamBufferOut.h"
-#import "StreamBufferIn.h"
+#import "StreamOutBuffer.h"
+#import "StreamInBuffer.h"
 
 @implementation GetMsg {
-  
+
 }
 
 - (id) init {
@@ -22,19 +23,19 @@
   return self;
 }
 
-- (NSData *) serialize {
-  StreamBufferOut *data = [[StreamBufferOut alloc] init];
-    
-  [data appendBuffer:self.path];
-  [data appendBool:false];
-  return [data buffer];
+- (void) serialize:(StreamOutBuffer *) buf {
+  [buf appendBuffer:self.path];
+  [buf appendBool:false];
 }
 
-- (void) deserialize:(NSData *)incoming {
-  StreamBufferIn *data = [[StreamBufferIn alloc] initWithNSData:incoming];
-  self.content = [data readBuffer];
+- (void) deserialize:(StreamInBuffer *) buf {
+  Stat *stat = [[Stat alloc] init];
+
+  self.content = [buf readBuffer];
+  [buf readRecord:stat];
   
   NSLog(@"Content = %@", self.content);
+  [self.stat print];
 }
 
 @end

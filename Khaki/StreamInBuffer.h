@@ -8,12 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@interface StreamBufferIn : NSObject
+@protocol Deserializable;
+
+@interface StreamInBuffer : NSObject
+
+@property int pos;
 
 - (id) initWithNSData:(NSData *) data;
 - (int) readInt;
 - (long) readLong;
 - (bool) readBool;
 - (NSString *) readBuffer;
+- (void) readRecord:(id<Deserializable>)record;
 
 @end

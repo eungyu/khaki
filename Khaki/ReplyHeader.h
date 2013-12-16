@@ -6,15 +6,16 @@
 //  Copyright (c) 2013 Eun-Gyu Kim. All rights reserved.
 //
 
+#import "Deserializable.h"
 #import <Foundation/Foundation.h>
 
-@interface ReplyHeader : NSObject
+@interface ReplyHeader : NSObject<Deserializable>
 
 @property int  xid;
 @property long zxid;
 @property int  error;
 
-- (void) deserialize:(NSData *) incoming;
+- (void) deserialize:(StreamInBuffer *) buf;
 + (int) getHeaderLength;
 
 @end

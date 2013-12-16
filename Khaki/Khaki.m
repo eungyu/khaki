@@ -16,7 +16,7 @@
 #import "ReplyHeader.h"
 #import "RequestHeader.h"
 #import "PendingMessageQueue.h"
-#import "StreamBufferIn.h"
+#import "StreamInBuffer.h"
 
 @implementation Khaki {
   NSNumber *_xid;
@@ -62,10 +62,12 @@
     
     _eventLoopQueue = dispatch_queue_create("event.queue", DISPATCH_QUEUE_CONCURRENT);
 
+    // start send thread
     dispatch_async(_eventLoopQueue, ^{
       [self sendloop];
     });
     
+    // start receive thread
     dispatch_async(_eventLoopQueue, ^{
       [self recvloop];
     });
@@ -93,24 +95,34 @@
 // the holy command loop
 - (void) exec {
   
+  // This is an example of how blocking execution loop will be
+
+  // 1) Generate header
   RequestHeader *header = [[RequestHeader alloc] init];
   header.xid = [self getNextXid];
   header.type = OP_GETDATA;
   
-  GetMsg *command = [[GetMsg alloc] init];
-  command.path = @"/Hello/World";
+  // 2) Generate payload
+  GetMsg *payload = [[GetMsg alloc] init];
+  payload.path = @"/Hello/World";
   
-  NSMutableData *request = [[NSMutableData alloc] init];
-  [request appendData:[header serialize]];
-  [request appendData:[command serialize]];
-
-  [self sendMessage:request];
+  // 3) Put them together
+  StreamOutBuffer *outbuf = [[StreamOutBuffer alloc] init];
+  [header serialize:outbuf];
+  [payload serialize:outbuf];
   
+  // 4) Send message asynchronously
+  [self sendMessage:[outbuf buffer]];
+  
+  // 5) block for the response
+  // internally this is waiting on condition lock
   NSData *data = [_pending waitForResponse:header.xid];
   GetMsg *response = [[GetMsg alloc] init];
-  [response deserialize:data];
   
-  NSLog(@"Response %@ %d", response.content, response.content.length);
+  StreamInBuffer *inbuf = [[StreamInBuffer alloc] initWithNSData:data];
+  
+  // 6) Do whatever with the raw data received
+  [response deserialize:inbuf];
 }
 
 // the holy send loop
@@ -129,13 +141,9 @@
       [_outbound removeObjectAtIndex:0];
     }
 
-    uint32_t msglen = CFSwapInt32HostToBig((uint32_t) data.length);
-    NSMutableData *msg = [[NSMutableData alloc] initWithLength:[data length] + 4];
-    
-    [msg replaceBytesInRange:NSMakeRange(0, sizeof(uint32_t)) withBytes:&msglen];
-    [msg replaceBytesInRange:NSMakeRange(sizeof(uint32_t), [data length]) withBytes:[data bytes]];
-    
+    NSData *msg = [self padWithLength:data];
     NSInteger nbytes = [_socket writeBytes:[msg bytes] withMaxLen:[msg length]];
+    
     NSLog(@"%ld byte sent", nbytes);
     
     // TODO: handle unfinished bytes
@@ -158,7 +166,8 @@
       
       if (!_socket.connected) {
         ConnMsg *conn = [[ConnMsg alloc] init];
-        [conn deserialize:data];
+        StreamInBuffer *inbuf = [[StreamInBuffer alloc] initWithNSData:data];
+        [conn deserialize:inbuf];
         [_socket setConnected:true];
         [self setupPingTimer];
 
@@ -167,7 +176,8 @@
       else
       {
         ReplyHeader *header = [[ReplyHeader alloc] init];
-        [header deserialize:data];
+        StreamInBuffer *inbuf = [[StreamInBuffer alloc] initWithNSData:data];
+        [header deserialize:inbuf];
         
         int headerLength = [ReplyHeader getHeaderLength];
         NSRange payloadRange = NSMakeRange(headerLength, msglen - headerLength);
@@ -206,6 +216,15 @@
   dispatch_semaphore_signal(_sendsema);
 }
 
+- (NSData *) padWithLength:(NSData *)data {
+  uint32_t msglen = CFSwapInt32HostToBig((uint32_t) data.length);
+  NSMutableData *msg = [[NSMutableData alloc] initWithLength:[data length] + 4];
+  
+  [msg replaceBytesInRange:NSMakeRange(0, sizeof(uint32_t)) withBytes:&msglen];
+  [msg replaceBytesInRange:NSMakeRange(sizeof(uint32_t), [data length]) withBytes:[data bytes]];
+  return msg;
+}
+
 - (void) handlePayload:(NSData *) payload withHeader:(ReplyHeader *) header {
   
   int xid = [header xid];
@@ -227,8 +246,9 @@
   ConnMsg *conn = [[ConnMsg alloc] init];
   conn.timeout = 30000;
   
-  NSData *msg = [conn serialize];
-  [self sendMessage:msg];
+  StreamOutBuffer *outbuf = [[StreamOutBuffer alloc] init];
+  [conn serialize:outbuf];
+  [self sendMessage:[outbuf buffer]];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -247,9 +267,10 @@
       NSLog(@"Sending PING");
       
       Ping *ping = [[Ping alloc] init];
-      NSData *data = [ping serialize];
- 
-      [self sendMessage:data];
+      StreamOutBuffer *outbuf = [[StreamOutBuffer alloc] init];
+      [ping serialize:outbuf];
+      
+      [self sendMessage:[outbuf buffer]];
     });
     dispatch_resume(_pingTimer);
   }

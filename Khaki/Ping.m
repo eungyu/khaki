@@ -8,26 +8,20 @@
 
 #import "Ping.h"
 #import "OpCode.h"
-#import "StreamBufferOut.h"
-#import "StreamBufferIn.h"
+#import "StreamOutBuffer.h"
+#import "StreamInBuffer.h"
 
 @implementation Ping
 
-- (NSData *) serialize {
-  StreamBufferOut *data = [[StreamBufferOut alloc] init];
-  
-  [data appendInt:-2];       // xid,  hacking for now
-  [data appendInt:OP_PING];  // PING type
-  
-  return [data buffer];
+- (void) serialize:(StreamOutBuffer *) buf {
+  [buf appendInt:-2];       // xid,  hacking for now
+  [buf appendInt:OP_PING];  // PING type
 }
 
-- (void) deserialize:(NSData *) incoming {
-  StreamBufferIn *data = [[StreamBufferIn alloc] initWithNSData:incoming];
-  
-  int xid = [data readInt];
-  long zxid = [data readLong];
-  int error = [data readInt];
+- (void) deserialize:(StreamInBuffer *) buf {
+  int xid   = [buf readInt];
+  long zxid = [buf readLong];
+  int error = [buf readInt];
   
   NSLog(@"xid=%d, zxid=%ld, error=%d", xid, zxid, error);
 }

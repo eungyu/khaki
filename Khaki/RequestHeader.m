@@ -7,17 +7,13 @@
 //
 
 #import "RequestHeader.h"
-#import "StreamBufferOut.h"
+#import "StreamOutBuffer.h"
 
 @implementation RequestHeader
 
-- (NSData *) serialize {
-  StreamBufferOut *data = [[StreamBufferOut alloc] init];
-  
-  [data appendInt:self.xid];   // xid
-  [data appendInt:self.type];  // type
-  
-  return [data buffer];
+- (void) serialize:(StreamOutBuffer *) buf {
+  [buf appendInt:self.xid];   // xid
+  [buf appendInt:self.type];  // type
 }
 
 @end

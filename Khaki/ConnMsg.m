@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Eun-Gyu Kim. All rights reserved.
 //
 
-#import "StreamBufferIn.h"
-#import "StreamBufferOut.h"
+#import "StreamInBuffer.h"
+#import "StreamOutBuffer.h"
 #import "ConnMsg.h"
 
 @implementation ConnMsg {
@@ -27,27 +27,19 @@
   return self;
 }
 
-- (NSData *) serialize {
-  
-  StreamBufferOut *data = [[StreamBufferOut alloc] init];
-  
-  [data appendInt:self.protocol];
-  [data appendLong:self.lastXid];
-  [data appendInt:self.timeout];
-  [data appendLong:self.sessionId];
-  [data appendBuffer:self.passwd];
-  [data appendBool:self.readonly];
-  
-  return [data buffer];
+- (void) serialize:(StreamOutBuffer *) buf {
+  [buf appendInt:self.protocol];
+  [buf appendLong:self.lastXid];
+  [buf appendInt:self.timeout];
+  [buf appendLong:self.sessionId];
+  [buf appendBuffer:self.passwd];
+  [buf appendBool:self.readonly];
 }
 
-- (void) deserialize:(NSData *) incoming {
-  
-  StreamBufferIn *data = [[StreamBufferIn alloc] initWithNSData:incoming];
-  
-  self.protocol = [data readInt];
-  self.timeout = [data readInt];
-  self.sessionId = [data readLong];
+- (void) deserialize:(StreamInBuffer *) buf {
+  self.protocol  = [buf readInt];
+  self.timeout   = [buf readInt];
+  self.sessionId = [buf readLong];
   
   NSLog(@"protocol=%u, lastXid=%llu, timeout=%u, sessionId=%llu, sessionId=0x%02llx", self.protocol, self.lastXid, self.timeout, self.sessionId, self.sessionId);
 }

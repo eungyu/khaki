@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface StreamBufferOut : NSObject
+@interface StreamOutBuffer : NSObject
 
 - (void) appendInt:(uint32_t) val;
 - (void) appendLong:(uint64_t) val;

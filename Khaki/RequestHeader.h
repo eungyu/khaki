@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Eun-Gyu Kim. All rights reserved.
 //
 
-#import "ZooMessage.h"
+#import "Serializable.h"
 #import <Foundation/Foundation.h>
 
-@interface RequestHeader : NSObject
+@interface RequestHeader : NSObject<Serializable>
 
 @property int xid;
 @property int type;
 
-- (NSData *) serialize;
+- (void) serialize:(StreamOutBuffer *) buf;
 
 @end

@@ -6,16 +6,19 @@
 //  Copyright (c) 2013 Eun-Gyu Kim. All rights reserved.
 //
 
-#import "ZooMessage.h"
+#import "Stat.h"
+#import "Serializable.h"
+#import "Deserializable.h"
 #import <Foundation/Foundation.h>
 
-@interface GetMsg : NSObject<ZooMessage>
+@interface GetMsg : NSObject<Serializable, Deserializable>
 
+@property Stat *stat;
 @property NSString *path;
 @property NSString *content;
 
-- (NSData *) serialize;
-- (void) deserialize:(NSData *) incoming;
+- (void) serialize:(StreamOutBuffer *) buf;
+- (void) deserialize:(StreamInBuffer *) buf;
 
 @end
 
