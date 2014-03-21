@@ -41,7 +41,8 @@
   _khaki = [[Khaki alloc] initWithZkConnectString:@"localhost:2181"];
   [_khaki connect];
   
-  [_khaki exec];
+  ZkResult *result = [_khaki getData:@"/Hello/World"];
+  NSLog(@"%@", result.data);
 }
 
 

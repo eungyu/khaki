@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Response.h"
 
 @interface PendingMessageQueue : NSObject
 
@@ -15,7 +16,7 @@ enum pending_status {
   PENDING_ARRIVED = 1
 };
 
-- (NSData *) waitForResponse:(int) xid;
-- (void) submit:(int) xid with:(NSData *)data;
+- (Response *) waitForResponse:(int) xid;
+- (void) submit:(int) xid with:(Response *)data;
 
 @end

@@ -92,39 +92,6 @@
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////
 
-// the holy command loop
-- (void) exec {
-  
-  // This is an example of how blocking execution loop will be
-
-  // 1) Generate header
-  RequestHeader *header = [[RequestHeader alloc] init];
-  header.xid = [self getNextXid];
-  header.type = OP_GETDATA;
-  
-  // 2) Generate payload
-  GetMsg *payload = [[GetMsg alloc] init];
-  payload.path = @"/Hello/World";
-  
-  // 3) Put them together
-  StreamOutBuffer *outbuf = [[StreamOutBuffer alloc] init];
-  [header serialize:outbuf];
-  [payload serialize:outbuf];
-  
-  // 4) Send message asynchronously
-  [self sendMessage:[outbuf buffer]];
-  
-  // 5) block for the response
-  // internally this is waiting on condition lock
-  NSData *data = [_pending waitForResponse:header.xid];
-  GetMsg *response = [[GetMsg alloc] init];
-  
-  StreamInBuffer *inbuf = [[StreamInBuffer alloc] initWithNSData:data];
-  
-  // 6) Do whatever with the raw data received
-  [response deserialize:inbuf];
-}
-
 // the holy send loop
 - (void) sendloop {
   while (true) {
@@ -190,6 +157,58 @@
   }
 }
 
+// the holy execution loop (blocking)
+- (Response *) execute: (id<Serializable>) msg asType: (int) type {
+  // 1) Generate header
+  RequestHeader *header = [[RequestHeader alloc] init];
+  header.xid = [self getNextXid];
+  header.type = type;
+  
+  // 2) Put them together
+  StreamOutBuffer *outbuf = [[StreamOutBuffer alloc] init];
+  [header serialize:outbuf];
+  [msg serialize:outbuf];
+  
+  // 3) Send message asynchronously
+  [self sendMessage:[outbuf buffer]];
+  
+  // 4) block for the response
+  // internally this is waiting on condition lock
+  Response *response = [_pending waitForResponse:header.xid];
+  return response;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark API Functions
+#pragma mark -
+////////////////////////////////////////////////////////////////////////////////
+
+
+- (ZkResult *) getData: (NSString *) path {
+  GetMsg *payload = [[GetMsg alloc] init];
+  payload.path = path;
+
+  // call general execution routine
+  Response *response = [self execute: payload asType:OP_GETDATA];
+  GetMsg *msg = [[GetMsg alloc] init];
+  
+  ZkResult *result = [[ZkResult alloc] init];
+  result.error = [response.header error];
+  if (result.error != 0) {
+    return result;
+  }
+
+  // Deserialize the buffer and return
+  StreamInBuffer *inbuf = [[StreamInBuffer alloc] initWithNSData:response.data];
+  [msg deserialize:inbuf];
+  
+  result.data = msg.content;
+  result.stat = msg.stat;
+  
+  return result;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Helper Functions
@@ -238,8 +257,12 @@
   
   NSLog(@"Response to xid %d, len %ld", xid, payload.length);
 
+  Response *response = [[Response alloc] init];
+  response.header = header;
+  response.data = payload;
+  
   // submit response to pending queue
-  [_pending submit:xid with:payload];
+  [_pending submit:xid with:response];
 }
 
 - (void) sendConnMsg {

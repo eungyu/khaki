@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ZkResult.h"
 
 @interface Khaki : NSObject
 
@@ -16,5 +17,8 @@
 - (id) initWithZkConnectString:(NSString *) zkAddr;
 - (void) connect;
 - (void) exec;
+
+- (ZkResult *) getData: (NSString *) path;
+
 
 @end

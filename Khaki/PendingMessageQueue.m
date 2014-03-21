@@ -23,7 +23,7 @@
   return self;
 }
 
-- (NSData *) waitForResponse:(int) xid {
+- (Response *) waitForResponse:(int) xid {
   NSString *key = [NSString stringWithFormat:@"%d", xid];
   NSConditionLock *lock = [[NSConditionLock alloc] initWithCondition:PENDING_WAITING];
   @synchronized(_lockbox) {
@@ -32,9 +32,9 @@
 
   [lock lockWhenCondition:PENDING_ARRIVED];
   
-  NSData *data = nil;
+  Response *response = nil;
   @synchronized(_databox) {
-    data = [_databox objectForKey:key];
+    response = [_databox objectForKey:key];
   }
   
   [lock unlockWithCondition:PENDING_WAITING];
@@ -43,10 +43,10 @@
     [_lockbox removeObjectForKey:key];
   }
 
-  return data;
+  return response;
 }
 
-- (void) submit:(int) xid with:(NSData *)data {
+- (void) submit:(int) xid with:(Response *)response {
   NSString *key = [NSString stringWithFormat:@"%d", xid];
   
   NSConditionLock *lock = nil;
@@ -61,7 +61,7 @@
   [lock lockWhenCondition:PENDING_WAITING];
   
   @synchronized(_databox) {
-    [_databox setObject:data forKey:key];
+    [_databox setObject:response forKey:key];
   }
   
   [lock unlockWithCondition:PENDING_ARRIVED];
