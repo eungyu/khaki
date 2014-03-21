@@ -11,3 +11,8 @@ Now supports:
 + getData()
 + getChildren()
 + Watcher function registration and callback blocks
+
+Comping Up:
++ Remove
++ Update
++ Create
