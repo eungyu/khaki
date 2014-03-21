@@ -52,13 +52,17 @@
 - (NSString *) readBuffer {
   uint32_t len = [self readInt];
   
-  char buf[len];
+  char buf[len+1];
+  buf[len] = '\0'; // mark end of line otherwise nsstring is ended at weird location
+  
   NSRange range = {_pos, len};
   
   [_data getBytes:&buf range:range];
   
   _pos += len;
-  return [NSString stringWithCString:buf encoding:NSASCIIStringEncoding];
+  NSString *s = [NSString stringWithCString:buf encoding:NSASCIIStringEncoding];
+
+  return s;
 }
 
 - (void) readRecord:(id<Deserializable>) record {

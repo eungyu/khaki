@@ -1,5 +1,5 @@
 //
-//  Response.h
+//  ZkResult.h
 //  Khaki
 //
 //  Created by Eun-Gyu Kim on 3/21/14.
@@ -7,13 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ReplyHeader.h"
+#import "Stat.h"
 
-@interface Response : NSObject
+@interface NodeResult : NSObject
 
-@property ReplyHeader *header;
-@property NSData *data;
-
-- (bool) hasValidResult;
+@property NSString *data;
+@property Stat *stat;
 
 @end

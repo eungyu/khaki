@@ -1,26 +1,22 @@
 //
-//  Response.m
+//  ChildrenResult.m
 //  Khaki
 //
 //  Created by Eun-Gyu Kim on 3/21/14.
 //  Copyright (c) 2014 Eun-Gyu Kim. All rights reserved.
 //
 
-#import "Response.h"
+#import "ChildrenResult.h"
 
-@implementation Response
+@implementation ChildrenResult
 
 - (id) init {
   self = [super init];
   if (self) {
-    _data = nil;
-    _header = nil;
+    _children = nil;
+    _stat = nil;
   }
   return self;
-}
-
-- (bool) hasValidResult {
-  return (self.header) && (self.header.error == 0);
 }
 
 @end

@@ -41,11 +41,10 @@
   _khaki = [[Khaki alloc] initWithZkConnectString:@"localhost:2181"];
   [_khaki connect];
   
-  ZkResult *result = [_khaki getData:@"/Hello/World"];
-  NSLog(@"%@", result.data);
+  ChildrenResult *result = [_khaki getChildren:@"/Hello"];
+  for (NSString *child in result.children) {
+    NSLog(@"Child Found: %@ with %lu bytes", child, (unsigned long)[child length]);
+  }
 }
-
-
-
 
 @end

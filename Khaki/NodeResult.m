@@ -6,14 +6,16 @@
 //  Copyright (c) 2014 Eun-Gyu Kim. All rights reserved.
 //
 
-#import "ZkResult.h"
+#import "NodeResult.h"
 
-@implementation ZkResult
+@implementation NodeResult
 
 - (id) init {
-  _data = nil;
-  _stat = nil;
-
+  self = [super init];
+  if (self) {
+    _data = nil;
+    _stat = nil;
+  }
   return self;
 }
 

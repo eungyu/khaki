@@ -11,12 +11,14 @@
 
 #import "Ping.h"
 #import "OpCode.h"
-#import "GetMsg.h"
 #import "ConnMsg.h"
 #import "ReplyHeader.h"
 #import "RequestHeader.h"
 #import "PendingMessageQueue.h"
 #import "StreamInBuffer.h"
+
+#import "GetMsg.h"
+#import "GetChildrenMsg.h"
 
 @implementation Khaki {
   NSNumber *_xid;
@@ -185,7 +187,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 
-- (ZkResult *) getData: (NSString *) path {
+- (NodeResult *) getData: (NSString *) path {
   GetMsg *payload = [[GetMsg alloc] init];
   payload.path = path;
 
@@ -193,10 +195,9 @@
   Response *response = [self execute: payload asType:OP_GETDATA];
   GetMsg *msg = [[GetMsg alloc] init];
   
-  ZkResult *result = [[ZkResult alloc] init];
-  result.error = [response.header error];
-  if (result.error != 0) {
-    return result;
+  NodeResult *result = [[NodeResult alloc] init];
+  if (![response hasValidResult]) {
+    return nil;
   }
 
   // Deserialize the buffer and return
@@ -206,6 +207,27 @@
   result.data = msg.content;
   result.stat = msg.stat;
   
+  return result;
+}
+
+- (ChildrenResult *) getChildren: (NSString *) path {
+  GetChildrenMsg *payload = [[GetChildrenMsg alloc] init];
+  payload.path = path;
+  
+  Response *response = [self execute: payload asType:OP_GETCHILDREN2];
+  GetChildrenMsg *msg = [[GetChildrenMsg alloc] init];
+  
+  if (![response hasValidResult]) {
+    return nil;
+  }
+  
+  StreamInBuffer *inbuf = [[StreamInBuffer alloc] initWithNSData:response.data];
+  [msg deserialize:inbuf];
+
+  ChildrenResult *result = [[ChildrenResult alloc] init];
+  result.children = msg.children;
+  result.stat = msg.stat;
+
   return result;
 }
 

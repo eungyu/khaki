@@ -1,5 +1,5 @@
 //
-//  ZkResult.h
+//  ChildrenResult.h
 //  Khaki
 //
 //  Created by Eun-Gyu Kim on 3/21/14.
@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "Stat.h"
 
-@interface ZkResult : NSObject
+@interface ChildrenResult : NSObject
 
-@property int error;
-@property NSString *data;
+@property NSArray *children;
 @property Stat *stat;
 
 @end

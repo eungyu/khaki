@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1847E3B118DCB52900AC66BF /* ZkResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1847E3B018DCB52900AC66BF /* ZkResult.m */; };
+		1847E3B118DCB52900AC66BF /* NodeResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1847E3B018DCB52900AC66BF /* NodeResult.m */; };
 		1847E3B418DCB69A00AC66BF /* Response.m in Sources */ = {isa = PBXBuildFile; fileRef = 1847E3B318DCB69A00AC66BF /* Response.m */; };
+		1847E3B718DCC5B900AC66BF /* GetChildrenMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 1847E3B618DCC5B900AC66BF /* GetChildrenMsg.m */; };
+		1847E3BA18DCD5CD00AC66BF /* ChildrenResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1847E3B918DCD5CD00AC66BF /* ChildrenResult.m */; };
 		18DE8098185D3E9000D41595 /* RequestHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DE8097185D3E9000D41595 /* RequestHeader.m */; };
 		18DE809E185D7C7200D41595 /* Stat.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DE809D185D7C7200D41595 /* Stat.m */; };
 		18F9021718598E080018CF21 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F9021618598E080018CF21 /* Cocoa.framework */; };
@@ -46,10 +48,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1847E3AF18DCB52900AC66BF /* ZkResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZkResult.h; sourceTree = "<group>"; };
-		1847E3B018DCB52900AC66BF /* ZkResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZkResult.m; sourceTree = "<group>"; };
+		1847E3AF18DCB52900AC66BF /* NodeResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeResult.h; sourceTree = "<group>"; };
+		1847E3B018DCB52900AC66BF /* NodeResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeResult.m; sourceTree = "<group>"; };
 		1847E3B218DCB69A00AC66BF /* Response.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Response.h; sourceTree = "<group>"; };
 		1847E3B318DCB69A00AC66BF /* Response.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Response.m; sourceTree = "<group>"; };
+		1847E3B518DCC5B900AC66BF /* GetChildrenMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetChildrenMsg.h; sourceTree = "<group>"; };
+		1847E3B618DCC5B900AC66BF /* GetChildrenMsg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetChildrenMsg.m; sourceTree = "<group>"; };
+		1847E3B818DCD5CD00AC66BF /* ChildrenResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildrenResult.h; sourceTree = "<group>"; };
+		1847E3B918DCD5CD00AC66BF /* ChildrenResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildrenResult.m; sourceTree = "<group>"; };
 		18DE8096185D3E9000D41595 /* RequestHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestHeader.h; sourceTree = "<group>"; };
 		18DE8097185D3E9000D41595 /* RequestHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestHeader.m; sourceTree = "<group>"; };
 		18DE809C185D7C7200D41595 /* Stat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stat.h; sourceTree = "<group>"; };
@@ -216,6 +222,8 @@
 				6AD33F1F185BA5C80008568E /* ConnMsg.m */,
 				6AD33F20185BA5C80008568E /* GetMsg.h */,
 				6AD33F21185BA5C80008568E /* GetMsg.m */,
+				1847E3B518DCC5B900AC66BF /* GetChildrenMsg.h */,
+				1847E3B618DCC5B900AC66BF /* GetChildrenMsg.m */,
 				6AD33F22185BA5C80008568E /* OpCode.h */,
 				6AD33F23185BA5C80008568E /* Ping.h */,
 				6AD45050185BE94D00DE675F /* Ping.m */,
@@ -227,8 +235,10 @@
 				18DE809D185D7C7200D41595 /* Stat.m */,
 				18DE80A0185D85AE00D41595 /* Serializable.h */,
 				18DE80A1185D85B700D41595 /* Deserializable.h */,
-				1847E3AF18DCB52900AC66BF /* ZkResult.h */,
-				1847E3B018DCB52900AC66BF /* ZkResult.m */,
+				1847E3AF18DCB52900AC66BF /* NodeResult.h */,
+				1847E3B018DCB52900AC66BF /* NodeResult.m */,
+				1847E3B818DCD5CD00AC66BF /* ChildrenResult.h */,
+				1847E3B918DCD5CD00AC66BF /* ChildrenResult.m */,
 				1847E3B218DCB69A00AC66BF /* Response.h */,
 				1847E3B318DCB69A00AC66BF /* Response.m */,
 			);
@@ -363,16 +373,18 @@
 				6AD4504B185BC21700DE675F /* KhakiWindowController.m in Sources */,
 				6AD33F2B185BA5C80008568E /* GetMsg.m in Sources */,
 				18DE809E185D7C7200D41595 /* Stat.m in Sources */,
+				1847E3BA18DCD5CD00AC66BF /* ChildrenResult.m in Sources */,
 				18F9022318598E080018CF21 /* main.m in Sources */,
 				6AD4504F185BD71800DE675F /* PendingMessageQueue.m in Sources */,
 				6AD33F2E185BA5C80008568E /* StreamOutBuffer.m in Sources */,
-				1847E3B118DCB52900AC66BF /* ZkResult.m in Sources */,
+				1847E3B118DCB52900AC66BF /* NodeResult.m in Sources */,
 				6AD33F2A185BA5C80008568E /* ConnMsg.m in Sources */,
 				6AD33F2C185BA5C80008568E /* ReplyHeader.m in Sources */,
 				18DE8098185D3E9000D41595 /* RequestHeader.m in Sources */,
 				6AD33F2D185BA5C80008568E /* StreamInBuffer.m in Sources */,
 				18F9023018598E080018CF21 /* Khaki.xcdatamodeld in Sources */,
 				18F9022A18598E080018CF21 /* KhakiAppDelegate.m in Sources */,
+				1847E3B718DCC5B900AC66BF /* GetChildrenMsg.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
