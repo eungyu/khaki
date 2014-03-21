@@ -33,6 +33,7 @@
   dispatch_semaphore_t _connsema;
   
   PendingMessageQueue *_pending;
+  NSMutableDictionary *_watches;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -63,7 +64,8 @@
     _connsema = dispatch_semaphore_create(0);
     
     _eventLoopQueue = dispatch_queue_create("event.queue", DISPATCH_QUEUE_CONCURRENT);
-
+    _watches = [[NSMutableDictionary alloc] init];
+    
     // start send thread
     dispatch_async(_eventLoopQueue, ^{
       [self sendloop];
@@ -187,10 +189,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 
-- (NodeResult *) getData: (NSString *) path {
+- (NodeResult *) getData: (NSString *) path withWatcher:(void(^)(WatcherEvent *)) watcherFn {
+  
   GetMsg *payload = [[GetMsg alloc] init];
   payload.path = path;
-
+  payload.watch = (watcherFn != nil);
+  
   // call general execution routine
   Response *response = [self execute: payload asType:OP_GETDATA];
   GetMsg *msg = [[GetMsg alloc] init];
@@ -206,14 +210,19 @@
   
   result.data = msg.content;
   result.stat = msg.stat;
-  
+
+  // upon success, set watch function
+  @synchronized(_watches) {
+    [_watches setObject:watcherFn forKey:path];
+  }
+
   return result;
 }
 
-- (ChildrenResult *) getChildren: (NSString *) path {
+- (ChildrenResult *) getChildren: (NSString *) path withWatcher:(void(^)(WatcherEvent *)) watcherFn {
   GetChildrenMsg *payload = [[GetChildrenMsg alloc] init];
   payload.path = path;
-  
+
   Response *response = [self execute: payload asType:OP_GETCHILDREN2];
   GetChildrenMsg *msg = [[GetChildrenMsg alloc] init];
   
@@ -266,13 +275,37 @@
   return msg;
 }
 
+- (void) handleNotification: (NSData *) payload {
+  WatcherEvent *event = [[WatcherEvent alloc] init];
+  StreamInBuffer *inbuf = [[StreamInBuffer alloc] initWithNSData:payload];
+  [event deserialize:inbuf];
+  
+  // Retrieve watcher function for this path
+  NSObject *watchFn = nil;
+  @synchronized(_watches) {
+    watchFn = [_watches objectForKey:event.path];
+  }
+
+  // if watcher function exists, simply invoke it providing the watcher event
+  // in the argument
+  if (watchFn) {
+    ((void(^)(WatcherEvent *)) watchFn)(event);
+  }
+}
+
 - (void) handlePayload:(NSData *) payload withHeader:(ReplyHeader *) header {
   
   int xid = [header xid];
   switch (xid) {
+    case -1:
+      NSLog(@"Received NOTIFICATION");
+      [self handleNotification: payload];
+      return;
+      
     case -2:
       NSLog(@"Received PING");
       return;
+      
     default:
       break;
   }

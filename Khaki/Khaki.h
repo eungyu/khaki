@@ -10,6 +10,8 @@
 #import "NodeResult.h"
 #import "ChildrenResult.h"
 
+#import "WatcherEvent.h"
+
 @interface Khaki : NSObject
 
 @property (nonatomic, readonly, copy) NSString *host;
@@ -18,7 +20,8 @@
 - (id) initWithZkConnectString:(NSString *) zkAddr;
 - (void) connect;
 
-- (NodeResult *) getData: (NSString *) path;
-- (ChildrenResult *) getChildren: (NSString *) path;
+- (NodeResult *) getData: (NSString *) path withWatcher:(void(^)(WatcherEvent *)) watcherFn;
+
+- (ChildrenResult *) getChildren: (NSString *) path withWatcher:(void(^)(WatcherEvent *)) watcherFn;
 
 @end

@@ -18,13 +18,14 @@
   if (self) {
     _children = nil;
     _path = nil;
+    _watch = false;
   }
   return self;
 }
 
 - (void) serialize:(StreamOutBuffer *) buf {
   [buf appendBuffer:self.path];
-  [buf appendBool:false];
+  [buf appendBool:self.watch];
 }
 
 - (void) deserialize:(StreamInBuffer *) buf {

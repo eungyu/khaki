@@ -11,6 +11,7 @@
 		1847E3B418DCB69A00AC66BF /* Response.m in Sources */ = {isa = PBXBuildFile; fileRef = 1847E3B318DCB69A00AC66BF /* Response.m */; };
 		1847E3B718DCC5B900AC66BF /* GetChildrenMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 1847E3B618DCC5B900AC66BF /* GetChildrenMsg.m */; };
 		1847E3BA18DCD5CD00AC66BF /* ChildrenResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1847E3B918DCD5CD00AC66BF /* ChildrenResult.m */; };
+		1847E3BE18DCDC4900AC66BF /* WatcherEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 1847E3BD18DCDC4900AC66BF /* WatcherEvent.m */; };
 		18DE8098185D3E9000D41595 /* RequestHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DE8097185D3E9000D41595 /* RequestHeader.m */; };
 		18DE809E185D7C7200D41595 /* Stat.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DE809D185D7C7200D41595 /* Stat.m */; };
 		18F9021718598E080018CF21 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F9021618598E080018CF21 /* Cocoa.framework */; };
@@ -56,6 +57,8 @@
 		1847E3B618DCC5B900AC66BF /* GetChildrenMsg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetChildrenMsg.m; sourceTree = "<group>"; };
 		1847E3B818DCD5CD00AC66BF /* ChildrenResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildrenResult.h; sourceTree = "<group>"; };
 		1847E3B918DCD5CD00AC66BF /* ChildrenResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildrenResult.m; sourceTree = "<group>"; };
+		1847E3BC18DCDC4900AC66BF /* WatcherEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatcherEvent.h; sourceTree = "<group>"; };
+		1847E3BD18DCDC4900AC66BF /* WatcherEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatcherEvent.m; sourceTree = "<group>"; };
 		18DE8096185D3E9000D41595 /* RequestHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestHeader.h; sourceTree = "<group>"; };
 		18DE8097185D3E9000D41595 /* RequestHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestHeader.m; sourceTree = "<group>"; };
 		18DE809C185D7C7200D41595 /* Stat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stat.h; sourceTree = "<group>"; };
@@ -129,6 +132,8 @@
 		1847E3BB18DCD82600AC66BF /* api */ = {
 			isa = PBXGroup;
 			children = (
+				6AD33F30185BA6180008568E /* Khaki.h */,
+				6AD33F31185BA6180008568E /* Khaki.m */,
 				18DE809C185D7C7200D41595 /* Stat.h */,
 				18DE809D185D7C7200D41595 /* Stat.m */,
 				1847E3AF18DCB52900AC66BF /* NodeResult.h */,
@@ -190,8 +195,6 @@
 				1847E3BB18DCD82600AC66BF /* api */,
 				6AD33F1D185BA5A80008568E /* protocol */,
 				18F9022B18598E080018CF21 /* MainMenu.xib */,
-				6AD33F30185BA6180008568E /* Khaki.h */,
-				6AD33F31185BA6180008568E /* Khaki.m */,
 				18F9022818598E080018CF21 /* KhakiAppDelegate.h */,
 				18F9022918598E080018CF21 /* KhakiAppDelegate.m */,
 				6AD45049185BC21700DE675F /* KhakiWindowController.h */,
@@ -249,6 +252,8 @@
 				18DE80A1185D85B700D41595 /* Deserializable.h */,
 				1847E3B218DCB69A00AC66BF /* Response.h */,
 				1847E3B318DCB69A00AC66BF /* Response.m */,
+				1847E3BC18DCDC4900AC66BF /* WatcherEvent.h */,
+				1847E3BD18DCDC4900AC66BF /* WatcherEvent.m */,
 			);
 			name = protocol;
 			sourceTree = "<group>";
@@ -383,6 +388,7 @@
 				18DE809E185D7C7200D41595 /* Stat.m in Sources */,
 				1847E3BA18DCD5CD00AC66BF /* ChildrenResult.m in Sources */,
 				18F9022318598E080018CF21 /* main.m in Sources */,
+				1847E3BE18DCDC4900AC66BF /* WatcherEvent.m in Sources */,
 				6AD4504F185BD71800DE675F /* PendingMessageQueue.m in Sources */,
 				6AD33F2E185BA5C80008568E /* StreamOutBuffer.m in Sources */,
 				1847E3B118DCB52900AC66BF /* NodeResult.m in Sources */,

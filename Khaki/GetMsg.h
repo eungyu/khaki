@@ -16,6 +16,7 @@
 @property Stat *stat;
 @property NSString *path;
 @property NSString *content;
+@property bool watch;
 
 - (void) serialize:(StreamOutBuffer *) buf;
 - (void) deserialize:(StreamInBuffer *) buf;

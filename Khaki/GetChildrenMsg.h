@@ -14,6 +14,7 @@
 
 @interface GetChildrenMsg : NSObject<Serializable, Deserializable>
 
+@property bool watch;
 @property Stat *stat;
 @property NSArray *children;
 @property NSString *path;

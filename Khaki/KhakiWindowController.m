@@ -41,10 +41,16 @@
   _khaki = [[Khaki alloc] initWithZkConnectString:@"localhost:2181"];
   [_khaki connect];
   
-  ChildrenResult *result = [_khaki getChildren:@"/Hello"];
-  for (NSString *child in result.children) {
-    NSLog(@"Child Found: %@ with %lu bytes", child, (unsigned long)[child length]);
-  }
+  NodeResult *result = [_khaki getData:@"/Hello/Byte" withWatcher:^(WatcherEvent *event) {
+    NSLog(@"Notification for path %@ [type=%d, state=%d]", event.path, event.type, event.state);
+  }];
+  
+  NSLog(@"data: %@", result.data);
+  
+  //ChildrenResult *result = [_khaki getChildren:@"/Hello/Byte"];
+  //for (NSString *child in result.children) {
+  //  NSLog(@"Child Found: %@ with %lu bytes", child, (unsigned long)[child length]);
+  //}
 }
 
 @end
