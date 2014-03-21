@@ -126,6 +126,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1847E3BB18DCD82600AC66BF /* api */ = {
+			isa = PBXGroup;
+			children = (
+				18DE809C185D7C7200D41595 /* Stat.h */,
+				18DE809D185D7C7200D41595 /* Stat.m */,
+				1847E3AF18DCB52900AC66BF /* NodeResult.h */,
+				1847E3B018DCB52900AC66BF /* NodeResult.m */,
+				1847E3B818DCD5CD00AC66BF /* ChildrenResult.h */,
+				1847E3B918DCD5CD00AC66BF /* ChildrenResult.m */,
+				6AD33F20185BA5C80008568E /* GetMsg.h */,
+				6AD33F21185BA5C80008568E /* GetMsg.m */,
+				1847E3B518DCC5B900AC66BF /* GetChildrenMsg.h */,
+				1847E3B618DCC5B900AC66BF /* GetChildrenMsg.m */,
+			);
+			name = api;
+			sourceTree = "<group>";
+		};
 		18F9020A18598E080018CF21 = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +187,7 @@
 			children = (
 				6AD4504C185BD6F100DE675F /* models */,
 				6AD33F2F185BA5D20008568E /* io */,
+				1847E3BB18DCD82600AC66BF /* api */,
 				6AD33F1D185BA5A80008568E /* protocol */,
 				18F9022B18598E080018CF21 /* MainMenu.xib */,
 				6AD33F30185BA6180008568E /* Khaki.h */,
@@ -220,10 +238,6 @@
 			children = (
 				6AD33F1E185BA5C80008568E /* ConnMsg.h */,
 				6AD33F1F185BA5C80008568E /* ConnMsg.m */,
-				6AD33F20185BA5C80008568E /* GetMsg.h */,
-				6AD33F21185BA5C80008568E /* GetMsg.m */,
-				1847E3B518DCC5B900AC66BF /* GetChildrenMsg.h */,
-				1847E3B618DCC5B900AC66BF /* GetChildrenMsg.m */,
 				6AD33F22185BA5C80008568E /* OpCode.h */,
 				6AD33F23185BA5C80008568E /* Ping.h */,
 				6AD45050185BE94D00DE675F /* Ping.m */,
@@ -231,14 +245,8 @@
 				6AD33F25185BA5C80008568E /* ReplyHeader.m */,
 				18DE8096185D3E9000D41595 /* RequestHeader.h */,
 				18DE8097185D3E9000D41595 /* RequestHeader.m */,
-				18DE809C185D7C7200D41595 /* Stat.h */,
-				18DE809D185D7C7200D41595 /* Stat.m */,
 				18DE80A0185D85AE00D41595 /* Serializable.h */,
 				18DE80A1185D85B700D41595 /* Deserializable.h */,
-				1847E3AF18DCB52900AC66BF /* NodeResult.h */,
-				1847E3B018DCB52900AC66BF /* NodeResult.m */,
-				1847E3B818DCD5CD00AC66BF /* ChildrenResult.h */,
-				1847E3B918DCD5CD00AC66BF /* ChildrenResult.m */,
 				1847E3B218DCB69A00AC66BF /* Response.h */,
 				1847E3B318DCB69A00AC66BF /* Response.m */,
 			);
