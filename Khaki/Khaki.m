@@ -212,8 +212,10 @@
   result.stat = msg.stat;
 
   // upon success, set watch function
+  // in order to make block outlive the caller's scope,
+  // copy block before inserting
   @synchronized(_watches) {
-    [_watches setObject:watcherFn forKey:path];
+    [_watches setObject:[watcherFn copy] forKey:path];
   }
 
   return result;
